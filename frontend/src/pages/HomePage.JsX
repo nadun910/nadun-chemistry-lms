@@ -1,8 +1,8 @@
 export default function HomePage() {
     return (
       <div>
-        <h1>Welcome to Chemistry Classes</h1>
-        <p>Select your A/L year from the navigation bar.</p>
+        <h1>NADUN EDIRISINGHE CHEMISTRY</h1>
+        <p>Select your A/L year</p>
       </div>
     );
   }
