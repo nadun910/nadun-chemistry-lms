@@ -1,15 +1,15 @@
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Container, Nav, Navbar as BootstrapNavbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function NavigationBar() {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg">
+    <BootstrapNavbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/">Nadun Chemistry</Navbar.Brand>
+        <BootstrapNavbar.Brand as={Link} to="/">Nadun Chemistry</BootstrapNavbar.Brand>
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/login">Login</Nav.Link>
         </Nav>
       </Container>
-    </Navbar>
+    </BootstrapNavbar>
   );
 }
