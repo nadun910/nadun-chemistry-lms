@@ -1,11 +1,13 @@
+import { Container } from 'react-bootstrap';
 import { Routes, Route } from 'react-router-dom';
-import ChemistryNavbar from '../components/layout/Navbar';
+import Navbar from '../components/layout/Navbar';
 import HomePage from '../pages/HomePage';
+import YearContentPage from '../pages/YearContentPage';
 
 export default function AppRoutes() {
   return (
     <>
-      <ChemistryNavbar />
+      <Navbar />
       <Container className="mt-4">
         <Routes>
           <Route path="/" element={<HomePage />} />
