@@ -1,21 +1,29 @@
-// Handles all login/logout operations
+const BASE_URL = 'http://localhost:8000'; // Django default port
+
 export const login = async (email, password) => {
-    const response = await fetch('http://localhost:8000/api/auth/login/', {
+  try {
+    const response = await fetch(`${BASE_URL}/api/auth/login/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
-      credentials: 'include' // Required for cookies
+      credentials: 'include'
     });
-    const data = await response.json();
-    
-    if (response.ok) {
-      // Set cookie (works with Django backend)
-      document.cookie = `token=${data.access}; Secure; HttpOnly; Path=/; SameSite=Strict`;
-      return data;
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.detail || 'Login failed');
     }
-    throw new Error(data.detail || 'Login failed');
-  };
-  
-  export const logout = () => {
-    document.cookie = 'token=; Max-Age=0; Path=/;';
-  };
+
+    const data = await response.json();
+    document.cookie = `token=${data.access}; Path=/; Secure; HttpOnly`;
+    return data;
+    
+  } catch (error) {
+    console.error('Login error:', error);
+    throw error;
+  }
+};
+
+export const logout = () => {
+  document.cookie = 'token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT';
+};
