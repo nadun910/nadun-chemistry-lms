@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 export default function AppRoutes() {
   return (
     <>
-      <Navbar />
+      <NavigationBar /> {/* Corrected component name */}
       <Container className="mt-4">
         <Routes>
           <Route path="/" element={<HomePage />} />
