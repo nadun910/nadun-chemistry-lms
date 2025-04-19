@@ -13,6 +13,7 @@ export default function AppRouter() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/:year" element={<YearContentPage />} />
+          
         </Routes>
       </Container>
     </>
