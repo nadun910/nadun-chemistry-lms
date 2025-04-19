@@ -1,14 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import MainNavbar from '../components/layout/MainNavbar';
-import HomePage from '../pages/HomePage';
-import Login from '../pages/auth/Login';
-import YearContentPage from '../pages/YearContentPage';
 import { Container } from 'react-bootstrap';
+import Navbar from './components/Navbar';
+import HomePage from './pages/HomePage';
+import Login from './pages/Login';
+import YearContentPage from './pages/YearContentPage';
 
 export default function AppRouter() {
   return (
     <>
-      <MainNavbar />
+      <Navbar />
       <Container className="mt-4">
         <Routes>
           <Route path="/" element={<HomePage />} />
