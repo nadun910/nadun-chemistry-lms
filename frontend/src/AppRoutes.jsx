@@ -1,6 +1,5 @@
+import { Navbar, Container, Nav } from 'react-bootstrap';  // Add this import
 import { Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import Navbar from './components/layout/Navbar';
 import HomePage from './pages/HomePage';
 import Login from './pages/auth/Login';
 import YearContentPage from './pages/YearContentPage';
