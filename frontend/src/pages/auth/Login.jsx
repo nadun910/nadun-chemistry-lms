@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-import { login } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../api/auth';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -12,8 +11,9 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
-      navigate('/'); // Redirect to home after login
+      const { access } = await login(username, password);
+      localStorage.setItem('access_token', access);
+      navigate('/');
     } catch (err) {
       setError(err.message);
     }
@@ -22,28 +22,30 @@ export default function Login() {
   return (
     <div className="container mt-5" style={{ maxWidth: '500px' }}>
       <h2>Student Login</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+      {error && <div className="alert alert-danger">{error}</div>}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label">Username</label>
+          <input
+            type="text"
+            className="form-control"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
+          <input
             type="password"
+            className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </Form.Group>
-        <Button variant="primary" type="submit">Login</Button>
-      </Form>
+        </div>
+        <button type="submit" className="btn btn-primary">Login</button>
+      </form>
     </div>
   );
 }

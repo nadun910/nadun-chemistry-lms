@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 import HomePage from './pages/HomePage';
-import Login from './pages/Login';
+import Login from './pages/auth/Login';
 import YearContentPage from './pages/YearContentPage';
 
 export default function AppRouter() {
